@@ -1,4 +1,28 @@
-const http = require("http");
+const express = require("express");
+const app = express();
+const port = 8080;
+
+app.get(["/", "/home"], (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
+
+app.get("/contact", (req, res) => {
+  res.sendFile(__dirname + "/contact-me.html");
+});
+
+app.get("/about", (req, res) => {
+  res.sendFile(__dirname + "/about.html");
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(__dirname + "/404.html");
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}!`);
+});
+
+/* const http = require("http");
 const fs = require("fs");
 
 http
@@ -31,4 +55,4 @@ http
       });
     }
   })
-  .listen(8080);
+  .listen(8080);*/
